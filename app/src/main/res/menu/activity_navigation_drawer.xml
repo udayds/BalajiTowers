@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_home_black_24dp"
+            android:title="Home"
+
+            />
+        <item
+            android:id="@+id/nav_maintenance_details"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="Maintenance Details" />
+        <item
+            android:id="@+id/nav_maintenance_calculator"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="Maintenance Calculator" />
+        <item
+            android:id="@+id/nav_reports"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Reports" />
+        <item
+            android:id="@+id/nav_contactUs"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="Contact Us" />
+
+    </group>
+
+
+
+</menu>
