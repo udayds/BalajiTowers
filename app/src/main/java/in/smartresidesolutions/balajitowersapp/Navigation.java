@@ -3,6 +3,8 @@ package in.smartresidesolutions.balajitowersapp;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -15,7 +17,7 @@ import android.view.MenuItem;
 
 public class Navigation extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
+    FragmentManager fragmentManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,8 +40,9 @@ public class Navigation extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
+        fragmentManager=getSupportFragmentManager();
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+         navigationView.setNavigationItemSelectedListener(this);
     }
 
     @Override
@@ -79,9 +82,10 @@ public class Navigation extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-
+        Fragment fragment = null;
+        Class fragmentClass=null;
         if (id == R.id.nav_maintenance_details) {
-            // Handle the camera action
+            fragmentClass=MaintenanceFragment.class;
         } else if (id == R.id.nav_maintenance_calculator) {
 
         } else if (id == R.id.nav_reports) {
@@ -91,7 +95,15 @@ public class Navigation extends AppCompatActivity
         }else if (id == R.id.nav_contactUs) {
 
         }
+        try {
+            fragment = (Fragment) fragmentClass.newInstance();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
+        // Insert the fragment by replacing any existing fragment
+        fragmentManager = getSupportFragmentManager();
+       // fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

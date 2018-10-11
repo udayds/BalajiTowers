@@ -32,7 +32,9 @@
         <activity
             android:name=".Navigation"
             android:label="@string/title_activity_navigation"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
+        <activity android:name=".MaintenanceDetails" />
+        <activity android:name=".MaintenanceFragment"></activity>
     </application>
 
 </manifest>
