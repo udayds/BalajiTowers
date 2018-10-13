@@ -25,14 +25,7 @@ public class Navigation extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -87,13 +80,13 @@ public class Navigation extends AppCompatActivity
         if (id == R.id.nav_maintenance_details) {
             fragmentClass=MaintenanceFragment.class;
         } else if (id == R.id.nav_maintenance_calculator) {
-
+            fragmentClass=FragmentCalculator.class;
         } else if (id == R.id.nav_reports) {
-
+            fragmentClass=FragmentReport.class;
         }else if (id == R.id.nav_home) {
 
         }else if (id == R.id.nav_contactUs) {
-
+            fragmentClass=FragmentContactUs.class;
         }
         try {
             fragment = (Fragment) fragmentClass.newInstance();
@@ -103,7 +96,7 @@ public class Navigation extends AppCompatActivity
 
         // Insert the fragment by replacing any existing fragment
         fragmentManager = getSupportFragmentManager();
-       // fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
+        fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

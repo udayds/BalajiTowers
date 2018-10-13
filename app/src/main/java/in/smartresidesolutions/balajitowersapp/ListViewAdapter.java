@@ -1,13 +1,12 @@
 package in.smartresidesolutions.balajitowersapp;
 
-import static in.smartresidesolutions.balajitowersapp.Constant.FIRST_COLUMN;
-import static in.smartresidesolutions.balajitowersapp.Constant.SECOND_COLUMN;
-import static in.smartresidesolutions.balajitowersapp.Constant.THIRD_COLUMN;
-import static in.smartresidesolutions.balajitowersapp.Constant.FOURTH_COLUMN;
+
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import android.app.Activity;
+import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,11 +17,11 @@ import android.widget.TextView;
 public class ListViewAdapter extends BaseAdapter
 {
     public ArrayList<HashMap<String,String>> list;
-    MaintenanceFragment activity;
+    Context context;
 
-    public ListViewAdapter(MaintenanceFragment activity, ArrayList<HashMap<String,String>> list) {
+    public ListViewAdapter(Context context, ArrayList<HashMap<String,String>> list) {
         super();
-        this.activity = activity;
+        this.context = context;
         this.list = list;
     }
 
@@ -47,6 +46,7 @@ public class ListViewAdapter extends BaseAdapter
     private class ViewHolder {
         TextView txtFirst;
         TextView txtSecond;
+        TextView txtThird;
 
     }
 
@@ -56,14 +56,15 @@ public class ListViewAdapter extends BaseAdapter
 
         // TODO Auto-generated method stub
         ViewHolder holder;
-        LayoutInflater inflater =  activity.getLayoutInflater();
+        LayoutInflater inflater = (LayoutInflater) LayoutInflater.from(context);
 
         if (convertView == null)
         {
-            convertView = inflater.inflate(R.layout.list_view_rows, null);
+            convertView = inflater.inflate(R.layout.list_view_rows,parent,false);
             holder = new ViewHolder();
             holder.txtFirst = (TextView) convertView.findViewById(R.id.FirstText);
             holder.txtSecond = (TextView) convertView.findViewById(R.id.SecondText);
+            holder.txtThird = (TextView) convertView.findViewById(R.id.ThirdText);
           //  holder.txtThird = (TextView) convertView.findViewById(R.id.ThirdText);
         //    holder.txtFourth = (TextView) convertView.findViewById(R.id.FourthText);
             convertView.setTag(holder);
@@ -74,8 +75,11 @@ public class ListViewAdapter extends BaseAdapter
         }
 
         HashMap<String, String> map = list.get(position);
-        holder.txtFirst.setText(map.get(FIRST_COLUMN));
-        holder.txtSecond.setText(map.get(SECOND_COLUMN));
+        holder.txtFirst.setText(map.get("First"));
+        //Log.i("srmap",map.get(FIRST_COLUMN));
+        holder.txtSecond.setText(map.get("Second"));
+        holder.txtThird.setText(map.get("Third"));
+
       //  holder.txtThird.setText((Integer) map.get(THIRD_COLUMN));
        // holder.txtFourth.setText((Integer) map.get(FOURTH_COLUMN));
 
